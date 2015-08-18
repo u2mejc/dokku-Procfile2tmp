@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
+source "$(dirname $0)/../common/functions"
+
+# post-depoly arguments: $APP $INTERNAL_PORT $INTERNAL_IP_ADDRESS
+
+#CIDS=$(get_app_container_ids $1)
+#docker cp ${CIDS[0]}:/app/Procfile /tmp/
+
+APP=$1
+copy_from_image "dokku/$APP" "/app/Procfile" "/tmp/$APP/"
